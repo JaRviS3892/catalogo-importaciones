@@ -1,6 +1,6 @@
 // components/ProductGridStep1.jsx
 import React from "react";
-import "./../App.css";
+import "../App.css";
 
 const fallback = "/images/fallback-300.jpg"; // opcional: crea una imagen genérica en /public/images
 
