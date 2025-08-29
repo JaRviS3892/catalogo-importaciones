@@ -21,10 +21,7 @@ export function CartProvider({ children }) {
     const clearCart = () => setItems([]);
     const getCount = () => items.reduce((acc, item) => acc + item.qty, 0);
     const getTotal = () =>
-        items.reduce((acc, item) => {
-            const numericPrice = Number((item.price || "0").replace(/[^\d]/g, ""));
-            return acc + numericPrice * item.qty;
-        }, 0);
+        items.reduce((acc, item) => acc + (item.price || 0) * item.qty, 0);
 
     const value = useMemo(() => ({
         items, addItem, removeItem, clearCart, getCount, getTotal

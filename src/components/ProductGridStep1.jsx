@@ -3,56 +3,15 @@ import React from "react";
 import "../App.css";
 import { useCart } from "../context/CartContext";
 import { toast } from "react-toastify";
+import products from "../data/products";
 
 // Imagen de respaldo, en caso de que una foto no cargue
 const fallback = "/images/fallback-300.jpg";
 
-const products = [
-    {
-        id: 1,
-        title: "Auriculares Bluetooth",
-        brand: "Sony",
-        price: "$45.000",
-        rating: 4.5,
-        reviews: 120,
-        stock: "En stock",
-        tags: ["Tecnología", "Audio"],
-        image: "/images/auriculares.jpg",
-    },
-    {
-        id: 2,
-        title: "Smartwatch Deportivo",
-        brand: "Huawei",
-        price: "$60.000",
-        rating: 4.2,
-        reviews: 90,
-        stock: "Pocas unidades",
-        tags: ["Tecnología", "Relojes"],
-        image: "/images/smartwatch.jpg",
-    },
-    {
-        id: 3,
-        title: "Cámara Digital",
-        brand: "Canon",
-        price: "$150.000",
-        rating: 4.8,
-        reviews: 45,
-        stock: "En stock",
-        tags: ["Fotografía"],
-        image: "/images/camara.jpg",
-    },
-    {
-        id: 4,
-        title: "Teclado Mecánico",
-        brand: "Logitech",
-        price: "$35.000",
-        rating: 4.6,
-        reviews: 78,
-        stock: "En stock",
-        tags: ["Gaming", "PC"],
-        image: "/images/teclado.jpg",
-    },
-];
+const currencyFormatter = new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+});
 
 export default function ProductGridStep1() {
     const { addItem } = useCart();
@@ -87,7 +46,7 @@ export default function ProductGridStep1() {
                                 <h3 className="Card-title">{p.title}</h3>
                                 <span className="Card-price">
                   <span className="sr-only">Precio: </span>
-                                    {p.price}
+                                    {currencyFormatter.format(p.price)}
                 </span>
                             </div>
                             <p className="Card-brand">{p.brand}</p>
