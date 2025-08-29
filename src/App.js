@@ -1,26 +1,70 @@
-// App.js
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import ProductGridStep1 from './components/ProductGridStep1';
+// src/App.js
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import ProductGridStep1 from "./components/ProductGridStep1";
+import CartDrawer from "./components/CartDrawer";
+import { useCart } from "./context/CartContext";
+import { FaShoppingCart } from "react-icons/fa";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function App() {
+export default function App() {
+    const { getCount } = useCart();
+    const itemsCount = getCount();
+    const [isCartOpen, setIsCartOpen] = React.useState(false);
+
     return (
         <div className="App">
-            <header className="App-header">
+            <header className="App-header" id="inicio">
                 <img src={logo} className="App-logo" alt="logo" />
 
+                {/* Navegación con icono de carrito y badge */}
                 <nav className="App-nav">
                     <a href="#inicio">Inicio</a> |{" "}
                     <a href="#productos">Productos</a> |{" "}
-                    <a href="#contacto">Contacto</a>
+                    <a href="#contacto">Contacto</a> |{" "}
+                    <span
+                        role="button"
+                        aria-label="Abrir carrito"
+                        tabIndex={0}
+                        onClick={() => setIsCartOpen(true)}
+                        onKeyDown={(e) =>
+                            (e.key === "Enter" || e.key === " ") && setIsCartOpen(true)
+                        }
+                        style={{
+                            position: "relative",
+                            cursor: "pointer",
+                            display: "inline-flex",
+                            alignItems: "center",
+                        }}
+                    >
+            <FaShoppingCart size={18} />
+                        {itemsCount > 0 && (
+                            <span
+                                style={{
+                                    position: "absolute",
+                                    top: "-4px",
+                                    right: "-8px",
+                                    background: "#e02424",
+                                    color: "#fff",
+                                    borderRadius: "50%",
+                                    padding: "2px 5px",
+                                    fontSize: "10px",
+                                    fontWeight: 700,
+                                    lineHeight: 1,
+                                }}
+                            >
+                {itemsCount}
+              </span>
+                        )}
+          </span>
                 </nav>
 
                 <p>Bienvenido a nuestro catálogo de importaciones.</p>
-
                 <a
                     className="App-link"
-                    href="https://reactjs.org"
+                    href="https://react.dev"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -31,8 +75,10 @@ function App() {
             <main>
                 <ProductGridStep1 />
             </main>
+
+            {/* Drawer del carrito + notificaciones */}
+            <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+            <ToastContainer position="top-right" autoClose={2500} />
         </div>
     );
 }
-
-export default App;
