@@ -1,9 +1,27 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
     const [items, setItems] = useState([]);
+
+    // Carga inicial desde localStorage
+    useEffect(() => {
+        try {
+            const stored = localStorage.getItem("cart");
+            if (stored) {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed)) setItems(parsed);
+            }
+        } catch {
+            // Ignorar errores de parseo
+        }
+    }, []);
+
+    // Sincroniza el carrito en localStorage
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(items));
+    }, [items]);
 
     const addItem = (product, qty = 1) => {
         setItems(prev => {
@@ -18,6 +36,20 @@ export function CartProvider({ children }) {
     };
 
     const removeItem = (id) => setItems(prev => prev.filter(item => item.id !== id));
+    const increaseQty = (id) =>
+        setItems(prev =>
+            prev.map(item =>
+                item.id === id ? { ...item, qty: item.qty + 1 } : item
+            )
+        );
+    const decreaseQty = (id) =>
+        setItems(prev =>
+            prev
+                .map(item =>
+                    item.id === id ? { ...item, qty: item.qty - 1 } : item
+                )
+                .filter(item => item.qty > 0)
+        );
     const clearCart = () => setItems([]);
     const getCount = () => items.reduce((acc, item) => acc + item.qty, 0);
     const getTotal = () =>
@@ -27,7 +59,14 @@ export function CartProvider({ children }) {
         }, 0);
 
     const value = useMemo(() => ({
-        items, addItem, removeItem, clearCart, getCount, getTotal
+        items,
+        addItem,
+        removeItem,
+        increaseQty,
+        decreaseQty,
+        clearCart,
+        getCount,
+        getTotal,
     }), [items]);
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
