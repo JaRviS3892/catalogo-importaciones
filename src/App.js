@@ -35,7 +35,7 @@ export default function App() {
                     >
                         <FaShoppingCart size={18} />
                         {itemsCount > 0 && (
-                            <span className="CartButton-badge">
+                            <span className="Cart-badge">
                                 {itemsCount}
                             </span>
                         )}
