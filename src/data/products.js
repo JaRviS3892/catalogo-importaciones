@@ -1,0 +1,48 @@
+const products = [
+  {
+    id: 1,
+    title: "Auriculares Bluetooth",
+    brand: "Sony",
+    price: 45000,
+    rating: 4.5,
+    reviews: 120,
+    stock: "En stock",
+    tags: ["Tecnología", "Audio"],
+    image: "/images/auriculares.jpg",
+  },
+  {
+    id: 2,
+    title: "Smartwatch Deportivo",
+    brand: "Huawei",
+    price: 60000,
+    rating: 4.2,
+    reviews: 90,
+    stock: "Pocas unidades",
+    tags: ["Tecnología", "Relojes"],
+    image: "/images/smartwatch.jpg",
+  },
+  {
+    id: 3,
+    title: "Cámara Digital",
+    brand: "Canon",
+    price: 150000,
+    rating: 4.8,
+    reviews: 45,
+    stock: "En stock",
+    tags: ["Fotografía"],
+    image: "/images/camara.jpg",
+  },
+  {
+    id: 4,
+    title: "Teclado Mecánico",
+    brand: "Logitech",
+    price: 35000,
+    rating: 4.6,
+    reviews: 78,
+    stock: "En stock",
+    tags: ["Gaming", "PC"],
+    image: "/images/teclado.jpg",
+  },
+];
+
+export default products;
