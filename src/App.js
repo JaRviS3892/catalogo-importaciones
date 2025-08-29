@@ -41,22 +41,9 @@ export default function App() {
                     >
             <FaShoppingCart size={18} />
                         {itemsCount > 0 && (
-                            <span
-                                style={{
-                                    position: "absolute",
-                                    top: "-4px",
-                                    right: "-8px",
-                                    background: "#e02424",
-                                    color: "#fff",
-                                    borderRadius: "50%",
-                                    padding: "2px 5px",
-                                    fontSize: "10px",
-                                    fontWeight: 700,
-                                    lineHeight: 1,
-                                }}
-                            >
-                {itemsCount}
-              </span>
+                            <span className="Cart-badge">
+                                {itemsCount}
+                            </span>
                         )}
           </span>
                 </nav>
