@@ -46,6 +46,30 @@
   outline-offset: 2px;
 }
 
+.CartButton {
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+}
+
+.CartButton-badge {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  background: #e02424;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 5px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

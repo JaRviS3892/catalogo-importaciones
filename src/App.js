@@ -24,41 +24,22 @@ export default function App() {
                     <a href="#inicio">Inicio</a> |{" "}
                     <a href="#productos">Productos</a> |{" "}
                     <a href="#contacto">Contacto</a> |{" "}
-                    <span
-                        role="button"
+                    <button
+                        type="button"
+                        className="CartButton"
                         aria-label="Abrir carrito"
-                        tabIndex={0}
                         onClick={() => setIsCartOpen(true)}
                         onKeyDown={(e) =>
                             (e.key === "Enter" || e.key === " ") && setIsCartOpen(true)
                         }
-                        style={{
-                            position: "relative",
-                            cursor: "pointer",
-                            display: "inline-flex",
-                            alignItems: "center",
-                        }}
                     >
-            <FaShoppingCart size={18} />
+                        <FaShoppingCart size={18} />
                         {itemsCount > 0 && (
-                            <span
-                                style={{
-                                    position: "absolute",
-                                    top: "-4px",
-                                    right: "-8px",
-                                    background: "#e02424",
-                                    color: "#fff",
-                                    borderRadius: "50%",
-                                    padding: "2px 5px",
-                                    fontSize: "10px",
-                                    fontWeight: 700,
-                                    lineHeight: 1,
-                                }}
-                            >
-                {itemsCount}
-              </span>
+                            <span className="CartButton-badge">
+                                {itemsCount}
+                            </span>
                         )}
-          </span>
+                    </button>
                 </nav>
 
                 <p>Bienvenido a nuestro catálogo de importaciones.</p>
