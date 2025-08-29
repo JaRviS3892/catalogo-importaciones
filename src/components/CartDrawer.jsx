@@ -1,10 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useCart } from "../context/CartContext";
-import { FaTimes } from "react-icons/fa";
+import { FaMinus, FaPlus, FaTimes } from "react-icons/fa";
 
 export default function CartDrawer({ isOpen, onClose }) {
-    const { items, removeItem, clearCart, getTotal } = useCart();
+    const { items, removeItem, clearCart, getTotal, increaseQty, decreaseQty } = useCart();
 
     // Variantes para animar el panel
     const drawerVariants = {
@@ -46,14 +46,33 @@ export default function CartDrawer({ isOpen, onClose }) {
                             <li key={item.id} className="Cart-item">
                                 <div className="Cart-item-info">
                                     <strong>{item.title}</strong>
-                                    <span>{item.qty} × {item.price}</span>
+                                    <span>{item.price}</span>
                                 </div>
-                                <button
-                                    className="Cart-remove"
-                                    onClick={() => removeItem(item.id)}
-                                >
-                                    Quitar
-                                </button>
+                                <div className="Cart-item-actions">
+                                    <div className="Cart-item-qty">
+                                        <button
+                                            className="Cart-qtyBtn"
+                                            aria-label="Disminuir cantidad"
+                                            onClick={() => decreaseQty(item.id)}
+                                        >
+                                            <FaMinus />
+                                        </button>
+                                        <span>{item.qty}</span>
+                                        <button
+                                            className="Cart-qtyBtn"
+                                            aria-label="Aumentar cantidad"
+                                            onClick={() => increaseQty(item.id)}
+                                        >
+                                            <FaPlus />
+                                        </button>
+                                    </div>
+                                    <button
+                                        className="Cart-remove"
+                                        onClick={() => removeItem(item.id)}
+                                    >
+                                        Quitar
+                                    </button>
+                                </div>
                             </li>
                         ))}
                     </ul>

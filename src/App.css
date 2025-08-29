@@ -293,6 +293,28 @@ html {
     display: flex;
     flex-direction: column;
 }
+.Cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.Cart-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.Cart-qtyBtn {
+    background: #4b5563;
+    border: none;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .Cart-remove {
     background: #ef4444;
     border: none;
