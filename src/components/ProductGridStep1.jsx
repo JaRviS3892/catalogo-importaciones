@@ -107,8 +107,8 @@ export default function ProductGridStep1() {
                                 <span className="Card-stock">{p.stock}</span>
                             </div>
                             <ul className="Card-tags">
-                                {p.tags.map((t, i) => (
-                                    <li className="Tag" key={i}>
+                                {Array.from(new Set(p.tags)).map((t) => (
+                                    <li className="Tag" key={t}>
                                         {t}
                                     </li>
                                 ))}
